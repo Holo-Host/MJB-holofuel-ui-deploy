@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+	<title>HoloFuel</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"> -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" type="text/css">
+	<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+	<link rel="stylesheet" href="/node_modules/notyf/notyf.min.css">
+
+	<link rel="stylesheet" href="/css/bootstrap-spacing.min.css">
+	<link rel="stylesheet" href="/css/mdc-table.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<script src="/vuejs/2.5.22/vue.js"></script>
+	<script src="https://unpkg.com/vue-mdc-adapter"></script>
+	<script src="/vuejs/router/3.0.2/vue-router.js"></script>
+	
+	<!-- https://material.io/tools/color/#!/?view.left=0&amp;view.right=0&view.right=0&primary.color=01579B&secondary.color=00a9f4&primary.text.color=ffffff&secondary.text.color=002f6c -->
+	<style type="text/css" rel="stylesheet">
+	  body { margin: 0; font-family: Roboto,sans-serif; }
+
+	  [v-cloak] {
+	    display: none;
+	  }
+
+	  :root {
+	    --mdc-theme-primary: #01579b;
+	    --mdc-theme-secondary: #00a9f4;
+	    --mdc-theme-on-primary: #fff;
+	    --mdc-theme-on-secondary: #002f6c;
+	  }
+	</style>
+
+	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+	
+    </head>
+    <body>
+	<mdc-layout-app id="app">
+	    <mdc-top-app-bar title="HoloFuel" event="nav">
+		<!-- <mdc-top-app-bar-action @click="showHelp" icon="help"></mdc-top-app-bar-action> -->
+	    </mdc-top-app-bar>
+
+	    <mdc-drawer v-cloak
+			v-if="whoami.agent_id"
+			toggle-on="nav" temporary>
+		<div class="px-3">
+		    <mdc-title class="mb-0">HoloFuel</mdc-title>
+		    <mdc-subheading class="mt-1">{{ whoami.agent_id.nick }}</mdc-subheading>
+		</div>
+		
+	    	<mdc-drawer-list>
+		    <mdc-drawer-item start-icon="dashboard"
+				     :href="relativeLink('/')">Dashboard</mdc-drawer-item>
+		    <mdc-drawer-item start-icon="person"
+				     :href="relativeLink('/profile')">Profile</mdc-drawer-item>
+		    <mdc-drawer-item start-icon="call_made"
+				     :href="relativeLink('/promise')">Send funds</mdc-drawer-item>
+		    <mdc-drawer-item start-icon="call_received"
+				     :href="relativeLink('/request')">Request funds</mdc-drawer-item>
+		    <mdc-drawer-item start-icon="exit_to_app"
+				     @click="signOut()">Sign Out</mdc-drawer-item>
+	    	</mdc-drawer-list>
+	    </mdc-drawer>
+	    
+	    <main>
+		<router-view></router-view>
+	    </main>
+	</mdc-layout-app>
+
+	<script src="/axios/0.18.0/axios.min.js"></script>
+	<script type="text/javascript">
+    	  Vue.prototype.$http = axios;
+	</script>
+	
+	<script src="/build/webpacked.app.js"></script>
+    </body>
+</html>
