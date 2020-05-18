@@ -698,7 +698,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
 console.log("Web SDK init (in holofuel-connect.js) has been loaded");
-var envoy = new _holo_host_web_sdk__WEBPACK_IMPORTED_MODULE_0__["Connection"]();
+var envoy = new _holo_host_web_sdk__WEBPACK_IMPORTED_MODULE_0__["Connection"]('chaperone.holo.host');
 global.SDK_debug = envoy;
 
 function init(uid) {
