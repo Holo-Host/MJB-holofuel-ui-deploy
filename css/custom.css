@@ -1,0 +1,16 @@
+
+.flex-table {
+  display: flex;
+  margin-bottom: 20px;
+}
+.flex-table div {
+  flex: 1;
+}
+
+.mdc-drawer {
+  background-color: transparent !important;
+}
+
+.mdc-top-app-bar {
+  position: relative !important;
+}
